@@ -29,7 +29,7 @@ export default async function getAllCharacters(
             .orderBy(orderBy as string || "name", orderType as string)
             .offset(offset)
 
-        resp.send(characters  )
+        resp.send(characters)
     } catch (error) {
         resp.status(500).send("Unexpected server error")
     }
