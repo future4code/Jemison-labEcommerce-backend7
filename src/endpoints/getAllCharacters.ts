@@ -5,7 +5,7 @@ import { character } from "../type";
 
 export default async function getAllCharacters(
     req:Request,
-    resp:Response
+    res:Response
 ):Promise<void>{
 
     try {
@@ -22,15 +22,15 @@ export default async function getAllCharacters(
 
         const offset = resultsPerPage * (Number(page)-1)
         
-        debugger
+        // debugger
 
         const characters: character[] = await connection("character")
             .where("name", "LIKE", `%${name}%`)
             .orderBy(orderBy as string || "name", orderType as string)
             .offset(offset)
 
-        resp.send(characters)
+        res.send(characters)
     } catch (error) {
-        resp.status(500).send("Unexpected server error")
+        res.status(500).send("Unexpected server error")
     }
 }
